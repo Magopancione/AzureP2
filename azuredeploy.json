@@ -11,7 +11,7 @@
     "domainName": {
       "type": "string",
       "metadata": {
-        "description": "Domain name of the public jumpbox"
+        "description": "Domain name of the public"
       }
     },
     "adminUsername": {
@@ -32,18 +32,16 @@
       "defaultValue": "Small",
       "allowedValues": [
         "Small",
-        "Medium",
-        "Large",
-        "XLarge"
+        "Medium"
       ],
       "metadata": {
-        "description": "T-shirt size of the PostgreSQL deployment"
+        "description": "T-shirt size of the GIOTTO deployment"
       }
     },
     "replicatorPassword": {
       "type": "securestring",
       "metadata": {
-        "description": "The replication password used for PostgreSQL streaming replication"
+        "description": "TO DELETE"
       }
     },
     "jumpbox": {
@@ -66,7 +64,7 @@
     }
   },
   "variables": {
-    "templateBaseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/postgresql-on-ubuntu/",
+    "templateBaseUrl": "https://raw.githubusercontent.com/Magopancione/AzureP2/master/",
     "sharedTemplateUrl": "[concat(variables('templateBaseUrl'), 'shared-resources.json')]",
     "tshirtSizeSmall": {
       "vmSize": "Standard_A1",
@@ -88,7 +86,7 @@
     "tshirtSizeMedium": {
       "vmSize": "Standard_A3",
       "diskSize": 1023,
-      "vmTemplate": "[concat(variables('templateBaseUrl'), 'database-8disk-resources.json')]",
+      "vmTemplate": "[concat(variables('templateBaseUrl'), 'database-2disk-resources.json')]",
       "vmCount": 2,
       "slaveCount": 1,
       "storage": {
@@ -97,43 +95,6 @@
         "pool": "db",
         "map": [
           0,
-          1
-        ],
-        "jumpbox": 0
-      }
-    },
-    "tshirtSizeLarge": {
-      "vmSize": "Standard_A4",
-      "diskSize": 1023,
-      "vmTemplate": "[concat(variables('templateBaseUrl'), 'database-16disk-resources.json')]",
-      "vmCount": 3,
-      "slaveCount": 2,
-      "storage": {
-        "name": "[parameters('storageAccountNamePrefix')]",
-        "count": 2,
-        "pool": "db",
-        "map": [
-          0,
-          1,
-          1
-        ],
-        "jumpbox": 0
-      }
-    },
-    "tshirtSizeXLarge": {
-      "vmSize": "Standard_A4",
-      "diskSize": 1023,
-      "vmTemplate": "[concat(variables('templateBaseUrl'), 'database-16disk-resources.json')]",
-      "vmCount": 4,
-      "slaveCount": 3,
-      "storage": {
-        "name": "[parameters('storageAccountNamePrefix')]",
-        "count": 2,
-        "pool": "db",
-        "map": [
-          0,
-          0,
-          1,
           1
         ],
         "jumpbox": 0
@@ -171,7 +132,7 @@
         }
       }
     },
-    "availabilitySetSettings": {
+      "availabilitySetSettings": {
       "name": "pgsqlAvailabilitySet",
       "fdCount": 3,
       "udCount": 5
@@ -202,7 +163,7 @@
       }
     },
     {
-      "name": "master-node",
+      "name": "active-mq",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
@@ -248,13 +209,13 @@
             "value": "0"
           },
           "dbType": {
-            "value": "MASTER"
+            "value": "ACTIVEMQ"
           }
         }
       }
     },
     {
-      "name": "slave-node",
+      "name": "is",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
@@ -300,7 +261,7 @@
             "value": "[reference('master-node').outputs.masterip.value]"
           },
           "dbType": {
-            "value": "SLAVE"
+            "value": "IS"
           }
         }
       }

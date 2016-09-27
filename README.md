@@ -1,4 +1,4 @@
-# Create PostgreSQL 9.3 master-slave streaming replication on multiple Ubuntu 14.04 VMs and one jumpbox VM with a public IP
+# Create GIOTTO on multiple Ubuntu 14.04 VMs and balancing over a public IP
 
 <a href="http://armviz.io/#/?load=https%3A%2F%2Fhttps://raw.githubusercontent.com/Magopancione/AzureP2/master/azuredeploy.json" target="_blank">
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2F" target="_blank">

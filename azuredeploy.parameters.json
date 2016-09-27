@@ -3,22 +3,22 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "GEN-UNIQUE-8"
+      "value": "myseconddeploy"
     },
     "adminUsername": {
       "value": "adminuser"
     },
     "adminPassword": {
-      "value": "GEN-PASSWORD"
+      "value": "Almaviva1"
     },
     "domainName": {
-      "value": "GEN-UNIQUE-8"
+      "value": "mysecond2post"
     },
     "replicatorPassword": {
-      "value": "GEN-PASSWORD"
+      "value": "Almaviva1"
     },
     "jumpbox": {
-      "value": "Enabled"
+      "value": "disabled"
     }
   }
 }
