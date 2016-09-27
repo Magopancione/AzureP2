@@ -1,9 +1,10 @@
 # Create PostgreSQL 9.3 master-slave streaming replication on multiple Ubuntu 14.04 VMs and one jumpbox VM with a public IP
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fpostgresql-on-ubuntu%2Fazuredeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fhttps://raw.githubusercontent.com/Magopancione/AzureP2/master/azuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2F" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fpostgresql-on-ubuntu%2Fazuredeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fhttps://raw.githubusercontent.com/Magopancione/AzureP2/master/azuredeploy.json" target="_blank">
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
@@ -25,20 +26,10 @@ Assuming your domainName parameter was "mypsqljumpbox" and region was "West US"
 * From the jumpbox, SSH into the master PostgreSQL server `ssh 10.0.1.4`
 * On the master (e.g. 10.0.1.4), use the following code to create table and some test data within your PostgreSQL master database.
 
-```
-sudo -u postgres psql
-create table table1 (name varchar(100));
-insert into table1 (name) values ('name1');
-insert into table1 (name) values ('name2');
-select * from table1;
-```
+
 
 * From the jumpbox, SSH into one of the slave PostgreSQL servers `ssh 10.0.1.5` and use psql to check that the data propaged properly
 
-```
-sudo -u postgres psql
-select * from table1;
-```
 
 The following table outlines the deployment topology characteristics for each supported t-shirt size:
 
