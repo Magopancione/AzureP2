@@ -15,10 +15,11 @@ fi
 
 #### Defalt Paramenters ####
 
-#  Configure java parameters
+# Configure java parameters
 export GET_JAVA_SITE="https:///sito"
 export GET_JAVA_FILE="jdk-7u75-linux-x64.tar.gz"
 export JAVA_TMP_PATH=/opt/jvm/jdk1.7.0_75
+
 #  Configure ActiveMQ parameters
 export GET_ACTIVEMQ_SITE="https:///sito"
 export GET_ACTIVEMQ_FILE="file"
@@ -122,25 +123,25 @@ setup_java() {
     echo "export PATH="$PATH:$JAVA_HOME/bin"" >> ~/bashrc
 	
     logger "Done installing Java, javahome is: $JAVA_TMP_PATH linked in /opt/java"	
-	
-	
-#variante  	
-#variante  	#!/bin/bash
-#variante  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/7u75-b13/jdk-7u75-linux-x64.tar.gz"
-#variante  tar -xvf jdk-7*
-#variante  mkdir /usr/lib/jvm
-#variante  mv ./jdk1.7* /usr/lib/jvm/jdk1.7.0
-#variante  update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1
-#variante  update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0/bin/javac" 1
-#variante  update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0/bin/javaws" 1
-#variante  chmod a+x /usr/bin/java
-#variante  chmod a+x /usr/bin/javac
-#variante  chmod a+x /usr/bin/javaws
-	
-	
-	
-	
 }
+
+
+
+setup_java_repo() {
+    add-apt-repository -y ppa:webupd8team/java
+    apt-get -q -y update  > /dev/null
+    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+    apt-get -q -y install oracle-java8-installer  > /dev/null
+
+
+#da fare linkare a /opt/java e java7
+     echo "export JAVA_HOME="/opt/java"" >> ~/bashrc
+    echo "export PATH="$PATH:$JAVA_HOME/bin"" >> ~/bashrc
+
+}
+
+
 
 ######
 
@@ -152,7 +153,7 @@ setup_java() {
 
 
 setup_activeMQ() {
-	logger "Start installing java..."
+	logger "Start installing ActiveMQ..."
 	
 	mkdir -p $ACTIVEMQ_TMP_PATH 
 	cd $ACTIVEMQ_TMP_PATH 
@@ -252,7 +253,7 @@ echo "net.ipv4.tcp_wmem = 4096 4096 16777216       " >> /etc/sysctl.conf
 ######   ESB STEPS
 
 setup_ESB() {
-	logger "Start installing java..."
+	logger "Start installing Enterpris Service Bus..."
 	
 	mkdir -p $ESB_TMP_PATH 
 	cd $ESB_TMP_PATH 
@@ -279,7 +280,8 @@ post_install_ESB() {
 
 
 #Crea Utente 
-useradd $ESB_USER
+groupadd -g 1010 $ESB_USE	
+useradd -u 1010 -g 1010 $ESB_USER
 
 echo "#! /bin/sh                                                                 " > /opt/WSO2/esb/esb_service
 echo "export JAVA_HOME="/opt/java/"                                              " >> /opt/WSO2/esb/esb_service
@@ -322,7 +324,7 @@ service esb_service start
 ######   CEP STEPS
 
 setup_CEP() {
-	logger "Start installing java..."
+	logger "Start installing Complex Event Processor..."
 	
 	mkdir -p $CEP_TMP_PATH 
 	cd $CEP_TMP_PATH 
@@ -347,7 +349,9 @@ post_install_CEP() {
 
 
 #Crea Utente 
-useradd $CEP_USER
+groupadd -g 1020 $CEP_USER	
+useradd -u 1020 -g 1020 $CEP_USER
+
 #Crea servizio
 echo " #! /bin/sh                                                       " >  /opt/WSO2/cep/cep_service
 echo "export JAVA_HOME="/opt/java/"                                     " >> /opt/WSO2/cep/cep_service
@@ -407,7 +411,7 @@ setup_IS() {
 	ln -s $IS_TMP_PATH /opt/WSO2/IdentityServer
 
  
-    logger "Done installing Identiy Server installed in: $IS_TMP_PATH   linked in /opt/WSO2/IdentityServer
+    logger "Done installing Identiy Server installed in: $IS_TMP_PATH  linked in /opt/WSO2/IdentityServer"
 	
 }
 
@@ -420,7 +424,10 @@ post_install_IS() {
 
 
 #Crea Utente 
-useradd $IS_USER
+groupadd -g 1030 $IS_USER	
+useradd -u 1030 -g 1030 $IS_USER
+
+
 #Crea servizio
 echo " #! /bin/sh                                                                   " >> /opt/WSO2/IdentityServer/is_service
 echo " export JAVA_HOME="/opt/java"                                                 " >> /opt/WSO2/IdentityServer/is_service
@@ -460,16 +467,16 @@ service is_service start
 
 sysctl_install_IS_CEP_ESB() {
 echo "net.ipv4.tcp_fin_timeout = 30  " >> /etc/sysctl.conf
-echo "fs.file-max = 2097152                    >> /etc/sysctl.conf
-echo "net.ipv4.tcp_tw_recycle = 1              >> /etc/sysctl.conf
-echo "net.ipv4.tcp_tw_reuse = 1                >> /etc/sysctl.conf
-echo "net.core.rmem_default = 524288           >> /etc/sysctl.conf
-echo "net.core.wmem_default = 524288           >> /etc/sysctl.conf
-echo "net.core.rmem_max = 67108864             >> /etc/sysctl.conf
-echo "net.core.wmem_max = 67108864             >> /etc/sysctl.conf
-echo "net.ipv4.tcp_rmem = 4096 87380 16777216  >> /etc/sysctl.conf
-echo "net.ipv4.tcp_wmem = 4096 65536 16777216  >> /etc/sysctl.conf
-echo "net.ipv4.ip_local_port_range = 1024 65535>> /etc/sysctl.conf
+echo "fs.file-max = 2097152                    ">> /etc/sysctl.conf
+echo "net.ipv4.tcp_tw_recycle = 1              ">> /etc/sysctl.conf
+echo "net.ipv4.tcp_tw_reuse = 1                ">> /etc/sysctl.conf
+echo "net.core.rmem_default = 524288           ">> /etc/sysctl.conf
+echo "net.core.wmem_default = 524288           ">> /etc/sysctl.conf
+echo "net.core.rmem_max = 67108864             ">> /etc/sysctl.conf
+echo "net.core.wmem_max = 67108864             ">> /etc/sysctl.conf
+echo "net.ipv4.tcp_rmem = 4096 87380 16777216  ">> /etc/sysctl.conf
+echo "net.ipv4.tcp_wmem = 4096 65536 16777216  ">> /etc/sysctl.conf
+echo "net.ipv4.ip_local_port_range = 1024 65535">> /etc/sysctl.conf
 }
 
 
@@ -575,14 +582,4 @@ apt-get -y update
 
 #Setup Java
 setup_java
-
-
 setup_product
-
-
-
-
-
-
-
-
