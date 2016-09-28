@@ -52,7 +52,7 @@
         "Disabled"
       ],
       "metadata": {
-        "description": "The flag allowing to enable or disable provisioning of the jumpbox VM that can be used to access the PostgreSQL environment"
+        "description": "The flag allowing to enable or disable provisioning of the jumpbox VM that can be used to access the install_AMQ_WSO2.bashenvironment"
       }
     },
     "virtualNetworkName": {
@@ -133,7 +133,7 @@
       }
     },
       "availabilitySetSettings": {
-      "name": "pgsqlAvailabilitySet",
+      "name": "IT_GIOTTO_AvailabilitySet",
       "fdCount": 3,
       "udCount": 5
     }
@@ -191,7 +191,7 @@
           "commonSettings": {
             "value": {
               "adminUsername": "[parameters('adminUsername')]",
-              "namespace": "ms"
+              "namespace": "ActiveMQ"
             }
           },
           "storageSettings": {
@@ -219,7 +219,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', 'master-node')]"
+        "[concat('Microsoft.Resources/deployments/', 'active-mq')]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -243,7 +243,7 @@
           "commonSettings": {
             "value": {
               "adminUsername": "[parameters('adminUsername')]",
-              "namespace": "sl"
+              "namespace": "IdentityServer"
             }
           },
           "storageSettings": {
@@ -258,7 +258,7 @@
             }
           },
           "masterIpAddress": {
-            "value": "[reference('master-node').outputs.masterip.value]"
+            "value": "[reference('active-mq').outputs.masterip.value]"
           },
           "dbType": {
             "value": "IS"

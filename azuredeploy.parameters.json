@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "myseconddeploy"
+      "value": "my3thdeploy"
     },
     "adminUsername": {
       "value": "adminuser"
@@ -12,13 +12,13 @@
       "value": "Almaviva1"
     },
     "domainName": {
-      "value": "mysecond2post"
+      "value": "my3thpost"
     },
     "replicatorPassword": {
       "value": "Almaviva1"
     },
     "jumpbox": {
-      "value": "disabled"
+      "value": "Disabled"
     }
   }
 }

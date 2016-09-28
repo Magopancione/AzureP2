@@ -131,7 +131,7 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(variables('vmName'), copyindex(), '/install_postgresql')]",
+      "name": "[concat(variables('vmName'), copyindex(), '/install_AMQ_WSO2.bash')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[resourceGroup().location]",
       "dependsOn": [
@@ -150,7 +150,7 @@
           "fileUris": "[parameters('osSettings').scripts]"
         },
         "protectedSettings": {
-          "commandToExecute": "[concat('bash install_postgresql.sh -m ', parameters('masterIpAddress'), ' -s ', parameters('subnet').prefix, ' -t ', parameters('dbType') , ' -p ', parameters('replicatorPassword') )]"
+          "commandToExecute": "[concat('bash install_AMQ_WSO2.bash -m ', parameters('masterIpAddress'), ' -s ', parameters('subnet').prefix, ' -t ', parameters('dbType') , ' -p ', parameters('replicatorPassword') )]"
         }
       }
     }
