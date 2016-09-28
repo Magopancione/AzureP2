@@ -266,6 +266,62 @@
         }
       }
     },
+
+
+
+    {
+      "name": "CEP",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', 'CEP')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('tshirtSize').vmTemplate]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminPassword": {
+            "value": "[parameters('adminPassword')]"
+          },
+          "replicatorPassword": {
+            "value": "[parameters('replicatorPassword')]"
+          },
+          "osSettings": {
+            "value": "[variables('osSettings')]"
+          },
+          "subnet": {
+            "value": "[variables('networkSettings').subnets.data]"
+          },
+          "commonSettings": {
+            "value": {
+              "adminUsername": "[parameters('adminUsername')]",
+              "namespace": "IdentityServer"
+            }
+          },
+          "storageSettings": {
+            "value": "[variables('tshirtSize').storage]"
+          },
+          "machineSettings": {
+            "value": {
+              "vmSize": "[variables('tshirtSize').vmSize]",
+              "diskSize": "[variables('tshirtSize').diskSize]",
+              "vmCount": "[variables('tshirtSize').slaveCount]",
+              "availabilitySet": "[variables('availabilitySetSettings').name]"
+            }
+          },
+          "masterIpAddress": {
+            "value": "[reference('active-mq').outputs.masterip.value]"
+          },
+          "dbType": {
+            "value": "CEP"
+          }
+        }
+      }
+    },
+
     {
       "name": "jumpbox",
       "type": "Microsoft.Resources/deployments",

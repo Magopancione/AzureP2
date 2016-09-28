@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "my4thdeploy"
+      "value": "storage-account-giotto"
     },
     "adminUsername": {
       "value": "adminuser"
@@ -12,7 +12,7 @@
       "value": "Almaviva1"
     },
     "domainName": {
-      "value": "my4hpost"
+      "value": "giotto_it"
     },
     "replicatorPassword": {
       "value": "Almaviva1"
