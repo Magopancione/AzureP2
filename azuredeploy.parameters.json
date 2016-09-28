@@ -17,6 +17,18 @@
     "replicatorPassword": {
       "value": "Almaviva1"
     },
+    "vmIP1": {
+      "value": "10.0.0.5"
+    },
+    "vmIP2": {
+      "value": "10.0.0.6"
+    },
+    "vmIP3": {
+      "value": "10.0.1.7"
+    },
+    "vmIP4": {
+      "value": "10.0.1.8"
+    }, 
     "jumpbox": {
       "value": "Disabled"
     }

@@ -54,7 +54,8 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "[parameters('machineSettings').vmIP]",
               "subnet": {
                 "id": "[variables('subnetRef')]"
               }
