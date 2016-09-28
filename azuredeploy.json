@@ -44,6 +44,30 @@
         "description": "TO DELETE"
       }
     },
+    "vmIP1": {
+      "type": "string",
+      "metadata": {
+        "description": "Ip della Virtual Machine 1"
+      }
+    },
+        "vmIP2": {
+      "type": "string",
+      "metadata": {
+        "description": "Ip della Virtual Machine 1"
+      }
+    },
+        "vmIP3": {
+      "type": "string",
+      "metadata": {
+        "description": "Ip della Virtual Machine 1"
+      }
+    },
+        "vmIP4": {
+      "type": "string",
+      "metadata": {
+        "description": "Ip della Virtual Machine 1"
+      }
+    },
     "jumpbox": {
       "type": "string",
       "defaultValue": "Disabled",
