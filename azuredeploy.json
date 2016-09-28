@@ -47,25 +47,25 @@
     "vmIP1": {
       "type": "string",
       "metadata": {
-        "description": "Ip della Virtual Machine 1"
+        "description": "Ip della Virtual Machine 1 Active MQ - DMZ"
       }
     },
         "vmIP2": {
       "type": "string",
       "metadata": {
-        "description": "Ip della Virtual Machine 1"
+        "description": "Ip della Virtual Machine 2 Identity Server - LAN"
       }
     },
         "vmIP3": {
       "type": "string",
       "metadata": {
-        "description": "Ip della Virtual Machine 1"
+        "description": "Ip della Virtual Machine 3 Comple Event Prcoessing - LAN"
       }
     },
         "vmIP4": {
       "type": "string",
       "metadata": {
-        "description": "Ip della Virtual Machine 1"
+        "description": "Ip della Virtual Machine 4 Enterprise Service Bus - DMZ"
       }
     },
     "jumpbox": {
@@ -240,7 +240,7 @@
       }
     },
     {
-      "name": "is",
+      "name": "IS",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [

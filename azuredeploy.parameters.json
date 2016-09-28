@@ -18,16 +18,28 @@
       "value": "Almaviva1"
     },
     "vmIP1": {
-      "value": "10.0.0.5"
+      "value": "10.0.0.5",
+      "metadata": {
+       "description": "Ip della Virtual Machine 1 Active MQ - DMZ"
+      }
     },
     "vmIP2": {
-      "value": "10.0.0.6"
+      "value": "10.0.1.6",
+      "metadata": {
+         "description": "Ip della Virtual Machine 2 Identity Server - LAN"
+      }
     },
     "vmIP3": {
-      "value": "10.0.1.7"
+      "value": "10.0.1.7",
+      "metadata": {
+        "description": "Ip della Virtual Machine 3 Comple Event Prcoessing - LAN"
+      }
     },
     "vmIP4": {
-      "value": "10.0.1.8"
+      "value": "10.0.0.8",
+      "metadata": {
+        "description": "Ip della Virtual Machine 4 Enterprise Service Bus - DMZ"
+      }
     }, 
     "jumpbox": {
       "value": "Disabled"
