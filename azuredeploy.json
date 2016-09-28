@@ -209,9 +209,6 @@
           "osSettings": {
             "value": "[variables('osSettings')]"
           },
-        "dnsName": {
-            "value": "[parameters('domainName')]"
-          },
           "subnet": {
             "value": "[variables('networkSettings').subnets.dmz]"
           },
