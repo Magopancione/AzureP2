@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "storage-account-giotto"
+      "value": "storagegiotto"
     },
     "adminUsername": {
       "value": "adminuser"
