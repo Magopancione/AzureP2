@@ -186,7 +186,7 @@
             "value": "[variables('osSettings')]"
           },
           "subnet": {
-            "value": "[variables('networkSettings').subnets.data]"
+            "value": "[variables('networkSettings').subnets.dmz]"
           },
           "commonSettings": {
             "value": {
@@ -328,7 +328,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('jumpboxTemplateUrl')]",
+          "uri": "[variables('tshirtSize').vmTemplate]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -342,7 +342,7 @@
             "value": "[variables('osSettings')]"
           },
           "subnet": {
-            "value": "[variables('networkSettings').subnets.data]"
+            "value": "[variables('networkSettings').subnets.dmz]"
           },
           "commonSettings": {
             "value": {
