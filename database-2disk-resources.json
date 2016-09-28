@@ -144,6 +144,9 @@
         "count": "[variables('vmCount')]"
       },
       "properties": {
+         "availabilitySet": {
+            "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('availabilitySetName'))]"
+          },
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
         "typeHandlerVersion": "2.0",
