@@ -32,7 +32,6 @@
   },
   "variables": {
     "namespace": "[parameters('commonSettings').namespace]",
-    "subnetRef": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('subnet').vnet), '/subnets/', parameters('subnet').name)]",
     "storageAccountName": "[concat(parameters('storageSettings').name, variables('namespace'))]",
     "vmName": "[concat(variables('namespace'), 'vm')]",
     "nicName": "[concat(variables('namespace'), 'nic')]",
@@ -144,9 +143,6 @@
         "count": "[variables('vmCount')]"
       },
       "properties": {
-         "availabilitySet": {
-            "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('availabilitySetName'))]"
-          },
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
         "typeHandlerVersion": "2.0",
